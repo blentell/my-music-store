@@ -8,8 +8,14 @@ body {
 }
 a {
   text-decoration: none;
-  color: inherit;
-  
+  color: inherit;  
+}
+
+#productImage {
+  height: 194px;
+  /* width: auto; */
+  justify-self: center;
+  object-fit: contain;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
