@@ -1,38 +1,24 @@
-import React from 'react';
+import React from "react";
 import Layout from "../layout/Layout";
-import CartItem from '../../components/CartItem'
+import CartItem from "../../components/CartItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ReplayIcon from "@mui/icons-material/Replay";
 import HomeIcon from "@mui/icons-material/Home";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-function CartPage() {
-  const shoppingCart = [
-		{
-			id: "123",
-			title: "Blue Drumset",
-			price: 89999,
-			quantity: 2,
-			image:
-				"https://www.yamaha.com/yamahavgn/PIM/Images/19027_12073_1_1200x1200_80813f268e73483818697e99937dbd59.jpg",
-		},
-		{
-			title: "Red Drumset",
-			quantity: 2,
-			price: 99999,
-			image:
-				"https://media.sweetwater.com/images/items/750/SBP8F3CR-large.jpg?v=59a77bcd3841c67a",
-		},
-	];
-  return (
+function CartPage(props) {
+	const { removeItem, shoppingCart, emptyCart } = props;
+
+	return (
 		<Layout>
 			<h1>This is the Shopping Cart</h1>
-			<Box p={2}>
+			<Box p={2}>				
 				{shoppingCart.map((item) => (
 					<Box mb={2} key={item.id}>
 						<CartItem
+							removeItem={removeItem}
 							cartItem={{
 								id: item.id,
 								title: item.title,
@@ -56,6 +42,7 @@ function CartPage() {
 						sx={{ width: "220px" }}
 						variant="contained"
 						startIcon={<ReplayIcon />}
+						onClick={emptyCart}
 					>
 						Empty Cart
 					</Button>

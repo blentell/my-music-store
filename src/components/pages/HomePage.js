@@ -4,9 +4,9 @@ import ProductDisplay from './ProductDisplay';
 import { fetchProducts } from '../../fetchData';
 import { Box } from '@mui/material';
 
-function HomePage() {
-  const [productData, setProductData] = useState();
-
+function HomePage(props) {
+	const [productData, setProductData] = useState();
+	const { addItemsToCart } = props;
   useEffect(() => {
     fetchProducts().then((data) =>
       setProductData(data));
@@ -22,12 +22,13 @@ function HomePage() {
 				{productData.map((product) => (
 					<Box key={product.id} mb={2}>
 						<ProductDisplay
+							addItemsToCart={addItemsToCart}
 							product={{
 								id: product.id,
 								title: product.title,
 								brand: product.brand,
 								price: product.price,
-								picture: product.picture,
+								image: product.image,
 								description: product.description,
 							}}
 							key={product.id}

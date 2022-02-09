@@ -10,23 +10,25 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
 
 export default function ProductDisplay(props) {
-	const {
-		product: { id, title, brand, price, picture, description },
-	} = props;
+	const { product, addItemsToCart } = props;
+	const { id, title, brand, price, image, description } = product;
 
+	const handleAddToCart = () => {
+		addItemsToCart(product);
+	}
 	return (
 		<Card sx={{ mx: "auto" }}>
 			<CardHeader
-				action={<Typography>${price / 100}</Typography>}
+				action={<Typography>$ {price / 100}</Typography>}
 				title={title}
-        subheader={brand}
+				subheader={brand}
 			/>
 			<CardMedia
 				component="img"
-        height="194"        
-        src={picture}
-        id='productImage'
-        alt="Blue Drumset"
+				height="194"
+				src={image}
+				id="productImage"
+				alt="Blue Drumset"
 			/>
 			<CardContent>
 				<Typography variant="body2" color="text.secondary">
@@ -34,7 +36,9 @@ export default function ProductDisplay(props) {
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
-				<Button variant="text">Add to cart</Button>
+				<Button variant="text" onClick={() => { handleAddToCart() }}>
+					Add to cart
+				</Button>
 				<IconButton aria-label="add to favorites" sx={{ marginLeft: "auto" }}>
 					<FavoriteIcon />
 				</IconButton>

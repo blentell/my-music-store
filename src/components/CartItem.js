@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 
 export default function CartItem(props) {
 	const {
-		cartItem: { id, title, image, price, quantity },
+		cartItem: { id, title, image, price, quantity }, removeItem
 	} = props;
 	return (
 		<Card sx={{ display: "flex" }}>
@@ -30,7 +30,7 @@ export default function CartItem(props) {
 					</Typography>
 				</Box>
 				<Box>
-          <Typography fontWeight="bold">${price/100}</Typography>
+          <Typography fontWeight="bold">$ {price/100}</Typography>
 				</Box>
 			</Box>
 			<Box display="flex" flexDirection="column" justifyContent="center">
@@ -43,7 +43,7 @@ export default function CartItem(props) {
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Box px={1}>
 					<IconButton>
-						<DeleteForeverIcon color="error" />
+						<DeleteForeverIcon onClick={()=> {removeItem(id)} }color="error" />
 					</IconButton>
 				</Box>
 			</Box>
